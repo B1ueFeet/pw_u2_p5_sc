@@ -1,8 +1,8 @@
 <template>
   <img alt="Vue logo" src="https://media.giphy.com/media/CXg3EY5GyUPlGIgEjX/giphy.gif">
-  <Contador titulo="Contador1"/>
-  <Contador titulo="Contador2"/>
-  <Contador titulo="Contador3"/>
+  <Contador titulo="Contador 01" :valor="5"/>
+  <Contador titulo="Contador 02" :valor="getVal()"/>
+  <Contador titulo="Contador 03"/>
 </template>
 
 <script>
@@ -12,6 +12,11 @@ export default {
   name: 'App',
   components: {
     Contador
+  },
+  methods:{
+    getVal(){
+      return 5+5*100
+    }
   }
 }
 </script>
