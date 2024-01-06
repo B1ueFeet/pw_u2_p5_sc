@@ -1,17 +1,14 @@
 <template>
-  <img alt="Vue logo" src="https://media.giphy.com/media/CXg3EY5GyUPlGIgEjX/giphy.gif">
-  <Contador titulo="Contador 01" :valor="5"/>
-  <Contador titulo="Contador 02" :valor="getVal()"/>
-  <Contador titulo="Contador 03"/>
+  <calculator/>
 </template>
 
 <script>
-import Contador from './components/Contador.vue';
+import Calculator from './components/Calculator.vue';
 
 export default {
   name: 'App',
   components: {
-    Contador
+    Calculator
   },
   methods:{
     getVal(){
@@ -23,10 +20,12 @@ export default {
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
   margin-top: 60px;
 }
