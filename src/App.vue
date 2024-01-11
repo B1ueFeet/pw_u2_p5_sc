@@ -1,27 +1,26 @@
 <template>
-  <calculator/>
+  <Pregunta />
 </template>
 
 <script>
-import Calculator from './components/Calculator.vue';
+import Pregunta from "./components/Pregunta.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    Calculator
+    Pregunta,
   },
-  methods:{
-    getVal(){
-      return 5+5*100
-    }
-  }
-}
+  methods: {
+    calcularValor() {
+      return 5 + 5 + 10;
+    },
+  },
+};
 </script>
 
 <style>
 #app {
-  display: flex;
-  flex-direction: column;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
   text-align: center;
   align-items: center;
   -webkit-font-smoothing: antialiased;
