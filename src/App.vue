@@ -1,14 +1,14 @@
 <template>
-  <Pregunta />
+  <Pokemon/>
 </template>
 
 <script>
-import Pregunta from "./components/Pregunta.vue";
+import Pokemon from "./components/Pokemon.vue";
 
 export default {
   name: "App",
   components: {
-    Pregunta,
+    Pokemon,
   },
   methods: {
     calcularValor() {
@@ -21,8 +21,6 @@ export default {
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  text-align: center;
-  align-items: center;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;

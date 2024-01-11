@@ -1,108 +1,100 @@
 <template>
   <div class="container">
-    <input v-model="id" v-on:keypress.ENTER="consumirApi" type="text" />
-    <p>Ingresa el numero en la POKEdex. Luego Presiona ENTER</p>
-
-    <div>
-        <form action="">
-            <label for="name">Nombre</label>
-            <label type="text" id="name" style="background: white;">{{ name }}</label>
-            <label for="weight">Peso</label>
-            <label type="text" id="weight" style="background: white;">{{ weight }}</label>
-            <label for="baseXp">Experiencia Base</label>
-            <label type="text" id="baseXp" style="background: white;">{{ baseXp }}</label>
-        </form>
-        </div>
+    <h1>Ingrese el número del pokemon</h1>
+    <input v-model="id" v-on:keypress.enter="consumirApi" type="text" id="id" />
+    <div v-if="consulta" class="formulario">
+      <h2>POKEMON</h2>
+      <div>
+        <img v-if="normal" v-bind:src="normal" alt="No se puede visualizar la imagen" />
+        <img v-if="shiny" v-bind:src="shiny" alt="No se puede visualizar la imagen" />
+      </div>
+      
+      <p type="Name:">
+        <input v-model="name" type="text" />
+      </p>
+      <p type="Weight:">
+        <input v-model="weight" type="text" />
+      </p>
+      <p type="Experiencia base:">
+        <input v-model="base_experience" type="text" />
+      </p>
+    </div>
   </div>
 </template>
-
 <script>
 export default {
   data() {
     return {
+      id: null,
       name: null,
       weight: null,
-      baseXp: null,
-      id: null,
-      respuesta: null,
-      image: null,
-      enterVal: false,
+      base_experience: null,
+      normal: null,
+      shiny: null,
+      consulta: false,
     };
   },
   methods: {
-    construirUrl(){
-      return "https://pokeapi.co/api/v2/pokemon/" + id
-    },
-
-    async consumirAPI(id) {
-      const { name, weight, base_experience } = await fetch(
-        this.construirUrl()
+    async consumirApi() {
+      const { name, weight, base_experience, sprites } = await fetch(
+        this.contruirURLAPI(this.id)
       ).then((respuesta) => respuesta.json());
       this.name = name;
       this.weight = weight;
-      this.experience = base_experience;
-    }
-  },
-  watch: {
-    pregunta(value, oldValue) {
-      this.enterVal = false;
-      console.log(value);
-      console.log(oldValue);
-      //Consumo del API:
-      this.consumirApi();
-      this.enterVal = true;
+      this.base_experience = base_experience;
+      this.normal = sprites.front_default;
+      this.shiny = sprites.front_shiny;
+      this.consulta = true;
+    },
+    contruirURLAPI(id) {
+      return "https://pokeapi.co/api/v2/pokemon/" + id;
     },
   },
-
+  watch: {
+    id(value, oldValue) {
+      if (value === "" || value !== oldValue) {
+        this.consulta = false;
+        this.img = null;
+      }
+    },
+  },
 };
 </script>
 
 <style scoped>
-.dark,
-img {
-  height: 100vh;
-  width: 100vw;
-  max-height: 100%;
-  max-width: 100%;
-  position: fixed;
-  top: 0px;
-  left: 0px;
+body{
+  background: aquamarine;
 }
-
-.dark {
-  background: rgba(0, 0, 0, 0.3);
-}
-
-input:focus {
-  outline: none;
-}
-
 input {
   width: 250px;
   padding: 10px 15px;
   border-radius: 5px;
   border: none;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   text-align: center;
 }
 
 .container {
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+
 }
 
-p {
-  color: white;
-  font-size: 20px;
-  margin-top: 0px;
+#id {
+  margin: 0px auto;
 }
 
-h1,
-h2 {
-  color: white;
+p:before {
+  content: attr(type);
+  display: block;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  margin: 5px 2px;
+  font-size: 16px;
+  color: #5a5a5a;
 }
-
-h2 {
-  margin-top: 100px;
+img{
+  height: 250px;
+  width: 250px;
 }
-
-
 </style>
