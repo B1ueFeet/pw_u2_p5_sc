@@ -1,14 +1,15 @@
 <template>
-  <Pokemon/>
+  <PokemonPage/>
 </template>
 
 <script>
-import Pokemon from "./components/Pokemon.vue";
+
+import PokemonPage from './pages/PokemonPage.vue';
 
 export default {
   name: "App",
   components: {
-    Pokemon,
+    PokemonPage,
   },
   methods: {
     calcularValor() {
@@ -21,6 +22,7 @@ export default {
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
+  text-align: center;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
