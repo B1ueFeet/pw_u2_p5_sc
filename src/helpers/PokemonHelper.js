@@ -21,11 +21,11 @@ const getPokeNames = async ([p1, p2, p3, p4]) => {
     const pk3 = { id: p3, nombre: await getName(p3), }
     const pk4 = { id: p4, nombre: await getName(p4), }
     const arreglo = [pk1, pk2, pk3, pk4];
-    console.log (arreglo);
+    return arreglo;
 };
 
 const getPokeIdFacade = async () => {
-    await getPokeNames(getPokeId());
+    return await getPokeNames(getPokeId());
 }
 
 export default getPokeIdFacade
