@@ -1,7 +1,8 @@
 <template>
     <div class="poke_container">
-        <img v-if="!show" class="hide" :src="imageGenerator" alt="No se puede Visualizar">
         <img v-if="show" :src="imageGenerator" alt="No se puede Visualizar">
+        <img v-if="!show" class="hide" :src="imageGenerator" alt="No se puede Visualizar">
+
     </div>
 </template>
 
